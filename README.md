@@ -10,6 +10,7 @@ A fun onepager React webapp that displays random Twitter images with a single cl
 - 📱 **Demo Mode** - Works with placeholder images when API keys aren't configured
 - ✨ **Fun Animations** - Smooth transitions and playful captions
 - 🌓 **Dark/Light Mode** - Respects system color scheme preferences
+- 🚀 **Single Server** - Backend and frontend served from one server.js file
 
 ## Screenshots
 
@@ -33,7 +34,7 @@ This will:
 - Install all dependencies
 - Create `.env` from template
 - Optionally configure Twitter API credentials
-- Launch both servers
+- Launch the server
 
 ### Manual Setup
 
@@ -62,39 +63,40 @@ TWITTER_API_SECRET=your_api_secret_here
 
 ### 3. Run the application
 
-Start both the backend server and frontend:
+Build and start the server (frontend + backend in one):
+
+```bash
+npm start
+```
+
+Or for development with hot reload:
 
 ```bash
 # Terminal 1 - Start the backend server
 npm run server
 
-# Terminal 2 - Start the frontend
+# Terminal 2 - Start the frontend dev server
 npm run dev
-```
-
-Or run both together:
-
-```bash
-npm run dev:all
 ```
 
 ### 4. Open in browser
 
-Visit [http://localhost:5173](http://localhost:5173)
+Visit [http://localhost:3001](http://localhost:3001)
 
 ## Scripts
 
+- `npm start` - Build frontend and start server (production mode, single server)
 - `npm run dev` - Start Vite development server (frontend only)
-- `npm run server` - Start Express backend server
-- `npm run dev:all` - Start both servers
-- `npm run build` - Build for production
+- `npm run server` - Start Express backend server (serves built frontend too)
+- `npm run dev:all` - Start both dev servers
+- `npm run build` - Build frontend for production
 - `npm run lint` - Run ESLint
 - `npm run preview` - Preview production build
 
 ## Tech Stack
 
 - **Frontend:** React 19, Vite
-- **Backend:** Express.js
+- **Backend:** Express.js (serves both API and static frontend)
 - **Twitter API:** [twitter-api-v2](https://github.com/PLhery/node-twitter-api-v2)
 - **Styling:** CSS with animations
 
@@ -102,9 +104,36 @@ Visit [http://localhost:5173](http://localhost:5173)
 
 MIT
 
+## Production Deployment
+
+The app runs from a single `server.js` file that serves both the API and frontend.
+
+### Deploy to Production
+
+1. Set your environment variables:
+   ```bash
+   export PORT=3001
+   export TWITTER_API_KEY=your_api_key
+   export TWITTER_API_SECRET=your_api_secret
+   ```
+
+2. Build and start:
+   ```bash
+   npm start
+   ```
+
+The server will be accessible at `http://<your-server-ip>:3001` serving both the frontend and API.
+
+### Recommended Hosting Services
+
+- **Railway** - Easy Node.js deployment
+- **Render** - Free tier available
+- **Fly.io** - Global edge deployment
+- **Heroku** - Classic PaaS option
+
 ## Hosting on GitHub Pages
 
-This app can be deployed as a static website on GitHub Pages (works in Demo Mode):
+This app can be deployed as a static website on GitHub Pages (works in Demo Mode only):
 
 ### Automatic Deployment
 
@@ -125,4 +154,4 @@ GITHUB_PAGES=true npm run build
 npm run preview
 ```
 
-> **Note:** When hosted on GitHub Pages, the app runs in Demo Mode (shows random placeholder images) since there's no backend server. To use the Twitter API, you need to deploy both frontend and backend to a hosting service like Vercel, Railway, or Render.
+> **Note:** When hosted on GitHub Pages, the app runs in Demo Mode (shows random placeholder images) since there's no backend server. For full functionality with Twitter API, use a Node.js hosting service.

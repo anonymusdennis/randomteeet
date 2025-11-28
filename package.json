@@ -11,6 +11,7 @@
     "server": "node server.js",
     "dev:all": "npm run server & npm run dev",
     "build": "vite build",
+    "start": "npm run build && node server.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },

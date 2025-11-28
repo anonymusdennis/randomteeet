@@ -1,8 +1,9 @@
 import { useState, useCallback } from 'react'
 import './App.css'
 
-// API endpoint - in production, this would be your deployed server URL
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+// API endpoint - when served from same server, use relative path (empty string)
+// For development with separate servers, set VITE_API_URL=http://localhost:3001
+const API_URL = import.meta.env.VITE_API_URL || '';
 
 // Fun captions to display with images
 const funCaptions = [
