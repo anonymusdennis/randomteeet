@@ -1,7 +1,8 @@
 import { useState, useCallback } from 'react'
 import './App.css'
 
-// API endpoint - in production, this would be your deployed server URL
+// API endpoint - set VITE_API_URL environment variable for production deployment
+// Example: VITE_API_URL=https://your-backend-api.example.com npm run build
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 // Fun captions to display with images

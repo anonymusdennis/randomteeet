@@ -102,6 +102,42 @@ Visit [http://localhost:5173](http://localhost:5173)
 
 MIT
 
+## Production Deployment
+
+### Backend Server
+
+The backend server is configured to accept external connections by default (binds to `0.0.0.0`).
+
+1. Set your environment variables:
+   ```bash
+   export PORT=3001
+   export HOST=0.0.0.0
+   export TWITTER_API_KEY=your_api_key
+   export TWITTER_API_SECRET=your_api_secret
+   ```
+
+2. Start the server:
+   ```bash
+   npm run server
+   ```
+
+The server will be accessible at `http://<your-server-ip>:3001`
+
+### Frontend Build
+
+Build the frontend with your backend API URL:
+
+```bash
+VITE_API_URL=https://your-backend-api.example.com npm run build
+```
+
+The built files in `./dist` can be deployed to any static hosting service.
+
+### Recommended Hosting Services
+
+- **Backend:** Railway, Render, Fly.io, Heroku, or any Node.js hosting
+- **Frontend:** Vercel, Netlify, GitHub Pages, or any static hosting
+
 ## Hosting on GitHub Pages
 
 This app can be deployed as a static website on GitHub Pages (works in Demo Mode):
