@@ -101,3 +101,28 @@ Visit [http://localhost:5173](http://localhost:5173)
 ## License
 
 MIT
+
+## Hosting on GitHub Pages
+
+This app can be deployed as a static website on GitHub Pages (works in Demo Mode):
+
+### Automatic Deployment
+
+1. Fork this repository
+2. Go to **Settings** → **Pages**
+3. Under **Source**, select **GitHub Actions**
+4. Push to `main` branch - the app will auto-deploy
+
+Your site will be available at: `https://<username>.github.io/randomteeet/`
+
+### Manual Build
+
+```bash
+# Build for GitHub Pages
+GITHUB_PAGES=true npm run build
+
+# Preview locally
+npm run preview
+```
+
+> **Note:** When hosted on GitHub Pages, the app runs in Demo Mode (shows random placeholder images) since there's no backend server. To use the Twitter API, you need to deploy both frontend and backend to a hosting service like Vercel, Railway, or Render.
