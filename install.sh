@@ -22,6 +22,17 @@ if ! command -v npm &> /dev/null; then
     exit 1
 fi
 
+# Check Node.js version (requires >= 18)
+NODE_VERSION=$(node -v | sed 's/v//' | cut -d'.' -f1)
+if [ "$NODE_VERSION" -lt 18 ]; then
+    echo "❌ Node.js version 18 or higher is required."
+    echo "   Current version: $(node -v)"
+    echo "   Please upgrade Node.js: https://nodejs.org/"
+    echo ""
+    echo "   If using nvm, run: nvm install 18 && nvm use 18"
+    exit 1
+fi
+
 echo "✅ Node.js $(node -v) detected"
 echo "✅ npm $(npm -v) detected"
 echo ""
