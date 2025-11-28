@@ -2,14 +2,22 @@ import express from 'express';
 import cors from 'cors';
 import { TwitterApi } from 'twitter-api-v2';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from the dist folder (built frontend)
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Initialize Twitter client with API Key and Secret (App-only auth)
 const getTwitterClient = async () => {
@@ -167,6 +175,11 @@ app.get('/api/health', async (req, res) => {
     status: 'ok',
     twitterConfigured: client !== null
   });
+});
+
+// Serve frontend for all other routes (SPA catch-all)
+app.get('/{*splat}', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 const HOST = process.env.HOST || '0.0.0.0';
