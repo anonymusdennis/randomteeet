@@ -21,7 +21,23 @@ A fun onepager React webapp that displays random Twitter images with a single cl
 
 ## Setup
 
-### 1. Install dependencies
+### Quick Start (Recommended)
+
+Run the install script to set up everything automatically:
+
+```bash
+./install.sh
+```
+
+This will:
+- Install all dependencies
+- Create `.env` from template
+- Optionally configure Twitter API credentials
+- Launch both servers
+
+### Manual Setup
+
+#### 1. Install dependencies
 
 ```bash
 npm install
